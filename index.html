@@ -620,16 +620,21 @@
             border-radius: 50px;
             font-size: 18px;
             font-weight: 700;
-            border: none;
+            border: 2px solid white;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .owner-btn:hover {
-            transform: scale(1.05);
+            background: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
         /* Footer */
@@ -1159,9 +1164,9 @@
             <div class="owner-content">
                 <h2>Publique seu imóvel</h2>
                 <p>Alcance milhares de inquilinos qualificados e gerencie tudo em um só lugar. Sem burocracia, com garantia total.</p>
-                <button class="owner-btn">
+                <a href="cadastro.html?tipo=proprietario" class="owner-btn" id="proprietarioBtn">
                     Sou proprietário <i class="ri-arrow-right-line"></i>
-                </button>
+                </a>
             </div>
             <!-- Decorative UI element simulating an app interface for owners -->
             <div style="width: 400px; height: 300px; background: white; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); z-index: 2; padding: 24px; position: relative;">
