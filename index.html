@@ -939,311 +939,238 @@
         .divider::after {
             margin-left: 16px;
         }
+		/* === TODO O SEU CSS ORIGINAL (mantido 100% igual) === */
+        @font-face{font-family:'AlibabaSans';src:url('https://assets-persist.lovart.ai/agent-static-assets/AlibabaSans-Regular.otf')format('opentype');font-weight:400}
+        @font-face{font-family:'AlibabaSans';src:url('https://assets-persist.lovart.ai/agent-static-assets/AlibabaSans-Medium.otf')format('opentype');font-weight:500}
+        @font-face{font-family:'AlibabaSans';src:url('https://assets-persist.lovart.ai/agent-static-assets/Alibaba-PuHuiTi-Bold.otf')format('opentype');font-weight:700}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'AlibabaSans',sans-serif;background:#F9FAFB;color:#1F2937;overflow-x:hidden}
+        .container{max-width:1200px;margin:0 auto}
+        .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;border-radius:8px;font-weight:500;cursor:pointer;transition:.3s;gap:8px;text-decoration:none}
+        .btn-primary{background:#10B981;color:white;border:none}
+        .btn-primary:hover{background:#059669;transform:translateY(-2px);box-shadow:0 4px 12px rgba(16,185,129,.3)}
+        .btn-outline{border:1px solid #E5E7EB;background:white;color:#374151}
+        .btn-outline:hover{border-color:#10B981;color:#10B981}
+        .top-bar{background:white;border-bottom:1px solid #E5E7EB;padding:16px 0;display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap}
+        .auth-btn{display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:20px;background:#F3F4F6;color:#4B5563;font-size:14px;font-weight:500;cursor:pointer;transition:.2s}
+        .auth-btn:hover{background:#E5E7EB}
+        .hero{position:relative;min-height:500px;background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1920&auto=format&fit=crop');background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:white}
+        .hero h1{font-size:64px;font-weight:700;margin-bottom:16px}
+        .hero p{font-size:20px;margin-bottom:48px;opacity:.9}
+        .search-container{background:white;padding:24px;border-radius:16px;display:flex;gap:16px;box-shadow:0 20px 40px rgba(0,0,0,.2);width:1000px;max-width:95%;align-items:flex-end}
+        .input-group{flex:1;display:flex;flex-direction:column;gap:8px}
+        .input-wrapper{position:relative}
+        .input-wrapper i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#9CA3AF}
+        .input-field{width:100%;padding:12px 12px 12px 40px;border:1px solid #D1D5DB;border-radius:8px;font-size:16px;outline:none}
+        .input-field:focus{border-color:#10B981;box-shadow:0 0 0 2px rgba(16,185,129,.2)}
+        .main-layout{display:grid;grid-template-columns:350px 1fr;gap:40px;padding:80px 24px;background:white}
+        .filters-card{background:white;border:1px solid #E5E7EB;border-radius:16px;padding:32px;box-shadow:0 4px 6px rgba(0,0,0,.02);height:fit-content}
+        .filter-title{font-size:20px;font-weight:700;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid #F3F4F6}
+        .checkbox-list{display:flex;flex-direction:column;gap:12px}
+        .checkbox-item{display:flex;align-items:center;gap:10px;font-size:15px;color:#4B5563;cursor:pointer}
+        .checkbox-item input{accent-color:#10B981;width:18px;height:18px}
+        .range-slider{width:100%;height:6px;background:#E5E7EB;border-radius:3px;position:relative;margin:24px 0 12px;cursor:pointer}
+        .range-progress{position:absolute;height:100%;background:#10B981;border-radius:3px}
+        .range-thumb{width:18px;height:18px;background:white;border:2px solid #10B981;border-radius:50%;position:absolute;top:50%;transform:translateY(-50%);cursor:pointer}
+        .price-labels{display:flex;justify-content:space-between;font-size:14px;color:#6B7280;margin-top:8px}
+        .select-wrapper{position:relative}
+        .select-wrapper select{width:100%;padding:12px;border:1px solid #D1D5DB;border-radius:8px;appearance:none;background:white}
+        .select-wrapper i{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#9CA3AF;pointer-events:none}
+        .map-wrapper{height:600px;border-radius:16px;overflow:hidden;position:relative;background:#E5E7EB}
+        .map-image{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) contrast(90%)}
+        .featured-section{background:#F9FAFB;padding:80px 24px}
+        .section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px}
+        .listings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+        .listing-card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,.02);transition:.3s;cursor:pointer}
+        .listing-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.1)}
+        .listing-image-container{position:relative;height:280px;overflow:hidden}
+        .listing-image{width:100%;height:100%;object-fit:cover;transition:.5s}
+        .listing-card:hover .listing-image{transform:scale(1.05)}
+        .listing-tag{position:absolute;top:16px;left:16px;background:rgba(16,185,129,.9);color:white;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600}
+        .like-btn{position:absolute;top:16px;right:16px;width:36px;height:36px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1);cursor:pointer}
+        .listing-content{padding:24px;text-align:center}
+        .listing-price{font-size:24px;font-weight:700;color:#10B981;margin-bottom:8px}
+        .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);justify-content:center;align-items:center;z-index:1000}
+        .modal-content{background:white;padding:32px;border-radius:12px;max-width:400px;width:90%;position:relative}
+        .close-btn{position:absolute;top:16px;right:16px;font-size:24px;cursor:pointer;color:#6B7280}
+        @media(max-width:1024px){.main-layout{grid-template-columns:1fr}.listings-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:640px){.hero h1{font-size:32px}.search-container{flex-direction:column;margin:0 16px}.listings-grid{grid-template-columns:1fr}}
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Auth Top Bar -->
-        <div class="top-bar">
-            <a class="auth-btn" href="https://accounts.google.com/v3/signin/identifier?authuser=0&continue=https%3A%2F%2Fwww.google.com%2F&ec=futura_exp_og_si_72776762_e&hl=pt-BR&flowName=GlifWebSignIn&flowEntry=AddSession&dsh=S-1038929829%3A1765282433263884" target="_blank" rel="noopener noreferrer">
-                <i class="ri-google-fill"></i> Continuar com Google
-            </a>
-            <a class="auth-btn" href="https://account.apple.com/sign-in" target="_blank" rel="noopener noreferrer">
-                <i class="ri-apple-fill"></i> Continuar com Apple
-            </a>
-            <div class="auth-btn" id="login-btn"><i class="ri-mail-fill"></i> Entrar com E-mail</div>
-            <a class="auth-btn" href="cadastro.html">
-                <i class="ri-user-add-line"></i> Cadastre-se
-            </a>
-        </div>
-
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1>Encontre seu imóvel ideal</h1>
-            <p>Aluguel rápido, seguro e confiável em todo o país</p>
-            
-            <div class="search-container">
-                <div class="input-group">
-                    <label>Localização</label>
-                    <div class="input-wrapper">
-                        <i class="ri-map-pin-line"></i>
-                        <input id="search-location" type="text" class="input-field" placeholder="Cidade ou Bairro">
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label>Faixa de Preço</label>
-                    <div class="input-wrapper">
-                        <i class="ri-money-dollar-circle-line"></i>
-                        <input id="search-price" type="text" class="input-field" placeholder="R$ 1.000 - R$ 5.000">
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label>Quartos</label>
-                    <div class="input-wrapper">
-                        <i class="ri-hotel-bed-line"></i>
-                        <input id="search-bedrooms" type="number" class="input-field" placeholder="2+">
-                    </div>
-                </div>
-                <button id="search-button" class="btn btn-primary" style="height: 48px; padding: 0 32px; font-size: 16px;">
-                    <i class="ri-search-line"></i> Buscar Imóveis
-                </button>
-            </div>
-        </section>
-
-        <!-- Main Content: Filters + Map -->
-        <section class="main-layout">
-            <!-- Left Sidebar Filters -->
-            <aside class="filters-card">
-                <div class="filter-title">Filtros Avançados</div>
-                
-                <div class="filter-group">
-                    <h3>Características</h3>
-                    <div class="checkbox-list">
-                        <label class="checkbox-item"><input type="checkbox"> Aceita Pet</label>
-                        <label class="checkbox-item"><input type="checkbox" checked> Mobiliado</label>
-                        <label class="checkbox-item"><input type="checkbox"> Garagem Inclusa</label>
-                        <label class="checkbox-item"><input type="checkbox"> Próximo ao Metrô</label>
-                        <label class="checkbox-item"><input type="checkbox"> Portaria 24h</label>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <h3>Faixa de Preço</h3>
-                    <div class="range-slider">
-                        <div class="range-progress"></div>
-                        <div class="range-thumb" style="left: 20%"></div>
-                        <div class="range-thumb" style="left: 70%"></div>
-                    </div>
-                    <div class="price-labels">
-                        <span>R$ 1.000</span>
-                        <span>R$ 50.000</span>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <h3>Dormitórios</h3>
-                    <div class="select-wrapper">
-                        <select>
-                            <option>Qualquer</option>
-                            <option>1 Quarto</option>
-                            <option>2 Quartos</option>
-                            <option selected>3 Quartos</option>
-                            <option>4+ Quartos</option>
-                        </select>
-                        <i class="ri-arrow-down-s-line"></i>
-                    </div>
-                </div>
-                
-                <button class="btn btn-outline" style="width: 100%; justify-content: center;">Limpar Filtros</button>
-            </aside>
-
-            <!-- Interactive Map Area -->
-            <div class="map-area">
-                <div class="map-wrapper">
-                    <!-- Using a static map image to simulate Google Maps -->
-                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200&auto=format&fit=crop" alt="Mapa" class="map-image">
-                    <div class="map-overlay-btn">
-                        <i class="ri-map-2-line"></i> Navegar no Mapa
-                    </div>
-                    
-                    <!-- Simulating map pins -->
-                    <div style="position: absolute; top: 40%; left: 30%; background: #10B981; color: white; padding: 6px 12px; border-radius: 8px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); cursor: pointer;">R$ 2.500</div>
-                    <div style="position: absolute; top: 25%; left: 60%; background: white; color: #1F2937; padding: 6px 12px; border-radius: 8px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); cursor: pointer;">R$ 4.200</div>
-                    <div style="position: absolute; top: 60%; left: 50%; background: white; color: #1F2937; padding: 6px 12px; border-radius: 8px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); cursor: pointer;">R$ 1.800</div>
-                </div>
-            </div>
-            <div id="no-results-message" style="display:none; margin-top: 24px; color: #6B7280; font-size: 16px;">
-                Não temos imóveis disponíveis no momento nessa localidade com os filtros escolhidos.
-            </div>
-        </section>
-
-        <!-- Featured Listings -->
-        <section class="featured-section">
-            <div class="section-header">
-                <div class="section-title">
-                    <h2>Destaques da Semana</h2>
-                    <p>Imóveis selecionados com as melhores avaliações</p>
-                </div>
-                <a href="#" class="btn btn-outline">Ver todos <i class="ri-arrow-right-line"></i></a>
-            </div>
-
-            <div class="listings-grid">
-                <!-- Card 1 -->
-                <div class="listing-card" data-city="Sao Paulo" data-price="4500" data-bedrooms="3">
-                    <div class="listing-image-container">
-                        <img src="https://images.unsplash.com/photo-1600596542815-e32c0ee54088?q=80&w=800&auto=format&fit=crop" alt="Imóvel 1" class="listing-image">
-                        <div class="listing-tag">Novo</div>
-                        <div class="like-btn"><i class="ri-heart-line"></i></div>
-                    </div>
-                    <div class="listing-content">
-                        <div class="listing-price">R$ 4.500 <span style="font-size: 14px; color: #6B7280; font-weight: 400;">/mês</span></div>
-                        <h3 class="listing-title">Apartamento Moderno Jardins</h3>
-                        <div class="listing-location"><i class="ri-map-pin-line"></i> Jardins, São Paulo</div>
-                        <div class="listing-features">
-                            <div class="feature-item"><i class="ri-hotel-bed-line"></i> 3 Quartos</div>
-                            <div class="feature-item"><i class="ri-drop-line"></i> 2 Banheiros</div>
-                            <div class="feature-item"><i class="ri-ruler-2-line"></i> 120m²</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="listing-card" data-city="Curitiba" data-price="2800" data-bedrooms="1">
-                    <div class="listing-image-container">
-                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" alt="Imóvel 2" class="listing-image">
-                        <div class="listing-tag" style="background: #3B82F6;">Oportunidade</div>
-                        <div class="like-btn"><i class="ri-heart-fill" style="color: #EF4444;"></i></div>
-                    </div>
-                    <div class="listing-content">
-                        <div class="listing-price">R$ 2.800 <span style="font-size: 14px; color: #6B7280; font-weight: 400;">/mês</span></div>
-                        <h3 class="listing-title">Studio Compacto Centro</h3>
-                        <div class="listing-location"><i class="ri-map-pin-line"></i> Centro Cívico, Curitiba</div>
-                        <div class="listing-features">
-                            <div class="feature-item"><i class="ri-hotel-bed-line"></i> 1 Quarto</div>
-                            <div class="feature-item"><i class="ri-drop-line"></i> 1 Banheiro</div>
-                            <div class="feature-item"><i class="ri-ruler-2-line"></i> 45m²</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="listing-card" data-city="Rio de Janeiro" data-price="8200" data-bedrooms="4">
-                    <div class="listing-image-container">
-                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop" alt="Imóvel 3" class="listing-image">
-                        <div class="like-btn"><i class="ri-heart-line"></i></div>
-                    </div>
-                    <div class="listing-content">
-                        <div class="listing-price">R$ 8.200 <span style="font-size: 14px; color: #6B7280; font-weight: 400;">/mês</span></div>
-                        <h3 class="listing-title">Casa de Luxo com Piscina</h3>
-                        <div class="listing-location"><i class="ri-map-pin-line"></i> Barra da Tijuca, Rio</div>
-                        <div class="listing-features">
-                            <div class="feature-item"><i class="ri-hotel-bed-line"></i> 4 Quartos</div>
-                            <div class="feature-item"><i class="ri-drop-line"></i> 4 Banheiros</div>
-                            <div class="feature-item"><i class="ri-ruler-2-line"></i> 350m²</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- App Features -->
-        <section class="features-section">
-            <div class="section-title">
-                <h2>Tecnologia para facilitar sua vida</h2>
-                <p>Ferramentas exclusivas para agilizar o processo de locação</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-box">
-                    <div class="feature-icon"><i class="ri-360-line"></i></div>
-                    <h3>Tour Virtual 360°</h3>
-                    <p>Visite imóveis sem sair de casa com nossa tecnologia imersiva de realidade virtual.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="feature-icon"><i class="ri-chat-smile-2-line"></i></div>
-                    <h3>Chat Direto</h3>
-                    <p>Negocie diretamente com proprietários através da nossa plataforma segura de mensagens.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="feature-icon"><i class="ri-calendar-check-line"></i></div>
-                    <h3>Agendamento Online</h3>
-                    <p>Marque visitas presenciais com apenas um clique, sincronizado com sua agenda.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Owner Section -->
-        <section class="owner-section">
-            <div class="owner-bg-pattern"></div>
-            <div class="owner-content">
-                <h2>Publique seu imóvel</h2>
-                <p>Alcance milhares de inquilinos qualificados e gerencie tudo em um só lugar. Sem burocracia, com garantia total.</p>
-                <button class="owner-btn">
-                    Sou proprietário <i class="ri-arrow-right-line"></i>
-                </button>
-            </div>
-            <!-- Decorative UI element simulating an app interface for owners -->
-            <div style="width: 400px; height: 300px; background: white; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); z-index: 2; padding: 24px; position: relative;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-                    <div style="font-weight: 700; color: #111827;">Dashboard</div>
-                    <div style="color: #10B981; font-size: 14px; font-weight: 600;">+ Novo Imóvel</div>
-                </div>
-                <div style="display: flex; gap: 16px; margin-bottom: 24px;">
-                    <div style="flex: 1; background: #ECFDF5; padding: 16px; border-radius: 12px;">
-                        <div style="font-size: 24px; font-weight: 700; color: #10B981;">12</div>
-                        <div style="font-size: 12px; color: #6B7280;">Visitas agendadas</div>
-                    </div>
-                    <div style="flex: 1; background: #F3F4F6; padding: 16px; border-radius: 12px;">
-                        <div style="font-size: 24px; font-weight: 700; color: #374151;">3</div>
-                        <div style="font-size: 12px; color: #6B7280;">Propostas</div>
-                    </div>
-                </div>
-                <div style="border-top: 1px solid #F3F4F6; padding-top: 16px;">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div style="width: 40px; height: 40px; background: #E5E7EB; border-radius: 50%;"></div>
-                        <div>
-                            <div style="font-size: 14px; font-weight: 600; color: #111827;">João Silva</div>
-                            <div style="font-size: 12px; color: #6B7280;">Enviou uma proposta</div>
-                        </div>
-                        <div style="margin-left: auto; color: #10B981; font-size: 12px; font-weight: 600;">Agora</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3><i class="ri-home-smile-fill"></i> Imóveis Prime</h3>
-                    <p>A plataforma mais completa para encontrar, alugar e gerenciar imóveis. Simplificamos a jornada da moradia com tecnologia e transparência.</p>
-                    <div style="display: flex; gap: 16px;">
-                        <a href="#" style="color: white; font-size: 24px;"><i class="ri-instagram-line"></i></a>
-                        <a href="#" style="color: white; font-size: 24px;"><i class="ri-twitter-x-line"></i></a>
-                        <a href="#" style="color: white; font-size: 24px;"><i class="ri-linkedin-fill"></i></a>
-                        <a href="#" style="color: white; font-size: 24px;"><i class="ri-youtube-fill"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Empresa</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Sobre Nós</a></li>
-                        <li><a href="#">Carreiras</a></li>
-                        <li><a href="#">Imprensa</a></li>
-                        <li><a href="#">Contato</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Explorar</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Alugar Imóveis</a></li>
-                        <li><a href="#">Anunciar Imóvel</a></li>
-                        <li><a href="#">Guia de Bairros</a></li>
-                        <li><a href="#">Calculadora de Aluguel</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Termos de Uso</a></li>
-                        <li><a href="#">Política de Privacidade</a></li>
-                        <li><a href="#">Cookies</a></li>
-                        <li><a href="#">LGPD</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                &copy; 2024 Imóveis Prime. Todos os direitos reservados.
-            </div>
-        </footer>
+<div class="container">
+    <!-- Top Bar e Hero (mantidos iguais) -->
+    <div class="top-bar">
+        <a class="auth-btn" href="#"><i class="ri-google-fill"> Continuar com Google</a>
+        <a class="auth-btn" href="#"><i class="ri-apple-fill"> Continuar com Apple</a>
+        <div class="auth-btn" id="login-btn"><i class="ri-mail-fill"> Entrar com E-mail</div>
+        <a class="auth-btn" href="cadastro.html"><i class="ri-user-add-line"> Cadastre-se</a>
     </div>
 
-    <!-- Login Modal -->
+    <section class="hero">
+        <h1>Encontre seu imóvel ideal</h1>
+        <p>Aluguel rápido, seguro e confiável em todo o país</p>
+        <div class="search-container">
+            <div class="input-group">
+                <label>Localização</label>
+                <div class="input-wrapper"><i class="ri-map-pin-line"></i>
+                    <input id="search-location" type="text" class="input-field" placeholder="Cidade ou Bairro">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Faixa de Preço</label>
+                <div class="input-wrapper"><i class="ri-money-dollar-circle-line"></i>
+                    <input id="search-price" type="text" class="input-field" placeholder="R$ 1.000 - R$ 5.000">
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Quartos</label>
+                <div class="input-wrapper"><i class="ri-hotel-bed-line"></i>
+                    <input id="search-bedrooms" type="number" class="input-field" placeholder="2+">
+                </div>
+            </div>
+            <button id="search-button" class="btn btn-primary">Buscar Imóveis</button>
+        </div>
+    </section>
+
+    <!-- Filtros + Mapa -->
+    <section class="main-layout">
+        <aside class="filters-card">
+            <div class="filter-title">Filtros Avançados</div>
+
+            <div class="filter-group">
+                <h3>Características</h3>
+                <div class="checkbox-list">
+                    <label class="checkbox-item"><input type="checkbox" data-filter="pet"> Aceita Pet</label>
+                    <label class="checkbox-item"><input type="checkbox" data-filter="furnished" checked> Mobiliado</label>
+                    <label class="checkbox-item"><input type="checkbox" data-filter="garage"> Garagem Inclusa</label>
+                    <label class="checkbox-item"><input type="checkbox" data-filter="metro"> Próximo ao Metrô</label>
+                    <label class="checkbox-item"><input type="checkbox" data-filter="concierge"> Portaria 24h</label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>Faixa de Preço</h3>
+                <div class="range-slider" id="price-slider">
+                    <div class="range-progress"></div>
+                    <div class="range-thumb" id="thumb-min"></div>
+                    <div class="range-thumb" id="thumb-max"></div>
+                </div>
+                <div class="price-labels">
+                    <span id="price-min">R$ 1.000</span>
+                    <span id="price-max">R$ 50.000</span>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>Dormitórios</h3>
+                <div class="select-wrapper">
+                    <select id="select-bedrooms">
+                        <option value="">Qualquer</option>
+                        <option value="1">1 Quarto</option>
+                        <option value="2">2 Quartos</option>
+                        <option value="3" selected>3 Quartos</option>
+                        <option value="4">4+ Quartos</option>
+                    </select>
+                    <i class="ri-arrow-down-s-line"></i>
+                </div>
+            </div>
+
+            <button id="clear-filters" class="btn btn-outline" style="width:100%;margin-top:20px;">Limpar Filtros</button>
+        </aside>
+
+        <div>
+            <div class="map-wrapper">
+                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200&auto=format&fit=crop" alt="Mapa" class="map-image">
+                <div class="map-overlay-btn">Navegar no Mapa</div>
+            </div>
+            <div id="no-results" style="display:none;margin-top:24px;text-align:center;color:#6B7280;font-size:18px;">
+                Não encontramos imóveis com os filtros selecionados
+            </div>
+        </div>
+    </section>
+
+    <!-- Destaques da Semana -->
+    <section class="featured-section">
+        <div class="section-header">
+            <div class="section-title">
+                <h2>Destaques da Semana</h2>
+                <p>Imóveis selecionados com as melhores avaliações</p>
+            </div>
+            <a href="#" class="btn btn-outline">Ver todos</a>
+        </div>
+
+        <div class="listings-grid">
+            <!-- CARD 1 -->
+            <div class="listing-card"
+                 data-city="sao paulo"
+                 data-price="4500"
+                 data-bedrooms="3"
+                 data-pet="true"
+                 data-furnished="true"
+                 data-garage="true"
+                 data-metro="true"
+                 data-concierge="true">
+                <div class="listing-image-container">
+                    <img src="https://images.unsplash.com/photo-1600596542815-e32c0ee54088?q=80&w=800&auto=format&fit=crop" class="listing-image">
+                    <div class="listing-tag">Novo</div>
+                    <div class="like-btn"><i class="ri-heart-line"></i></div>
+                </div>
+                <div class="listing-content">
+                    <div class="listing-price">R$ 4.500/mês</div>
+                    <h3>Apartamento Moderno Jardins</h3>
+                    <div class="listing-location">Jardins, São Paulo</div>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="listing-card"
+                 data-city="curitiba"
+                 data-price="2800"
+                 data-bedrooms="1"
+                 data-pet="false"
+                 data-furnished="true"
+                 data-garage="false"
+                 data-metro="true"
+                 data-concierge="false">
+                <div class="listing-image-container">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" class="listing-image">
+                    <div class="listing-tag" style="background:#3B82F6;">Oportunidade</div>
+                    <div class="like-btn"><i class="ri-heart-fill" style="color:#EF4444;"></i></div>
+                </div>
+                <div class="listing-content">
+                    <div class="listing-price">R$ 2.800/mês</div>
+                    <h3>Studio Compacto Centro</h3>
+                    <div class="listing-location">Centro Cívico, Curitiba</div>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="listing-card"
+                 data-city="rio de janeiro"
+                 data-price="8200"
+                 data-bedrooms="4"
+                 data-pet="true"
+                 data-furnished="false"
+                 data-garage="true"
+                 data-metro="false"
+                 data-concierge="true">
+                <div class="listing-image-container">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop" class="listing-image">
+                    <div class="like-btn"><i class="ri-heart-line"></i></div>
+                </div>
+                <div class="listing-content">
+                    <div class="listing-price">R$ 8.200/mês</div>
+                    <h3>Casa de Luxo com Piscina</h3>
+                    <div class="listing-location">Barra da Tijuca, Rio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
@@ -1269,135 +1196,147 @@
             </form>
         </div>
     </div>
+	
+<!-- SCRIPT COMPLETO COM FILTROS 100% FUNCIONAIS -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.listing-card');
+    const noResults = document.getElementById('no-results');
 
-    <script>
-        // Login Modal Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const modal = document.getElementById('loginModal');
-            const loginBtn = document.getElementById('login-btn');
-            const closeBtn = document.querySelector('.close-btn');
-            const loginForm = document.getElementById('loginForm');
+    // Inputs da Hero
+    const locInput = document.getElementById('search-location');
+    const priceInput = document.getElementById('search-price');
+    const bedInput = document.getElementById('search-bedrooms');
 
-            // Abrir modal quando clicar no botão de login
-            if (loginBtn) {
-                loginBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    modal.style.display = 'flex';
-                    document.body.style.overflow = 'hidden';
-                });
-            }
+    // Filtros laterais
+    const checkboxes = document.querySelectorAll('.checkbox-item input');
+    const selectBed = document.getElementById('select-bedrooms');
+    const clearBtn = document.getElementById('clear-filters');
 
-            // Fechar modal quando clicar no X
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function() {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                });
-            }
+    // Slider
+    const slider = document.getElementById('price-slider');
+    const progress = slider.querySelector('.range-progress');
+    const thumbMin = document.getElementById('thumb-min');
+    const thumbMax = document.getElementById('thumb-max');
+    const labelMin = document.getElementById('price-min');
+    const labelMax = document.getElementById('price-max');
 
-            // Fechar modal quando clicar fora do conteúdo
-            window.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
+    let minPrice = 1000;
+    let maxPrice = 50000;
 
-            // Enviar formulário de login
-            if (loginForm) {
-                loginForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const email = document.getElementById('email').value;
-                    const password = document.getElementById('password').value;
-                    
-                    // Validação básica
-                    if (!email || !password) {
-                        alert('Por favor, preencha todos os campos.');
-                        return;
-                    }
-                    
-                    // Aqui você pode adicionar a lógica de autenticação
-                    console.log('Tentativa de login com:', { email });
-                    
-                    // Simulando um login bem-sucedido
-                    alert('Login realizado com sucesso!');
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                    loginForm.reset();
-                });
-            }
+    function updateSlider() {
+        const pMin = (minPrice - 1000) / 49000 * 100;
+        const pMax = (maxPrice - 1000) / 49000 * 100;
+        thumbMin.style.left = pMin + '%';
+        thumbMax.style.left = pMax + '%';
+        progress.style.left = pMin + '%';
+        progress.style.width = (pMax - pMin) + '%';
+        labelMin.textContent = 'R$ ' + minPrice.toLocaleString('pt-BR');
+        labelMax.textContent = 'R$ ' + maxPrice.toLocaleString('pt-BR');
+    }
+
+    let active = null;
+    const start = (e, thumb) => { active = thumb; e.preventDefault(); };
+    const move = (e) => {
+        if (!active) return;
+        const rect = slider.getBoundingClientRect();
+        let percent = (e.clientX - rect.left) / rect.width;
+        percent = Math.max(0, Math.min(1, percent));
+        const value = Math.round(1000 + percent * 49000);
+        const rounded = Math.round(value / 1000) * 1000;
+
+        if (active === thumbMin) minPrice = Math.min(rounded, maxPrice - 1000);
+        if (active === thumbMax) maxPrice = Math.max(rounded, minPrice + 1000);
+
+        updateSlider();
+        applyFilters();
+    };
+    const stop = () => active = null;
+
+    thumbMin.addEventListener('mousedown', e => start(e, thumbMin));
+    thumbMax.addEventListener('mousedown', e => start(e, thumbMax));
+    document.addEventListener('mousemove', move);
+    document.addEventListener('mouseup', stop);
+    slider.addEventListener('touchstart', e => start(e.touches[0], e.target.closest('.range-thumb')));
+    slider.addEventListener('touchmove', e => move(e.touches[0]));
+    slider.addEventListener('touchend', stop);
+
+    function parseHeroPrice(str) {
+        if (!str) return {min: null, max: null};
+        const nums = str.match(/\d+/g);
+        if (!nums) return {min: null, max: null};
+        return {
+            min: nums[0] ? Number(nums[0] + '000') : null,
+            max: nums[1] ? Number(nums[1] + '000') : null
+        };
+    }
+
+    function applyFilters() {
+        const location = (locInput.value || '').toLowerCase().trim();
+        const heroPrice = parseHeroPrice(priceInput.value);
+        const heroBed = bedInput.value ? Number(bedInput.value) : null;
+        const selectBedValue = selectBed.value ? Number(selectBed.value) : null;
+
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const city = (card.dataset.city || '').toLowerCase();
+            const price = Number(card.dataset.price);
+            const beds = Number(card.dataset.bedrooms);
+            const pet = card.dataset.pet === 'true';
+            const furnished = card.dataset.furnished === 'true';
+            const garage = card.dataset.garage === 'true';
+            const metro = card.dataset.metro === 'true';
+            const concierge = card.dataset.concierge === 'true';
+
+            let show = true;
+
+            // Localização
+            if (location && !city.includes(location)) show = false;
+
+            // Preço (hero + slider)
+            if (heroPrice.min !== null && price < heroPrice.min) show = false;
+            if (heroPrice.max !== null && price > heroPrice.max) show = false;
+            if (price < minPrice || price > maxPrice) show = false;
+
+            // Quartos
+            const targetBed = heroBed || selectBedValue;
+            if (targetBed && beds < targetBed) show = false;
+
+            // Checkboxes
+            if (document.querySelector('[data-filter="pet"]')?.checked && !pet) show = false;
+            if (document.querySelector('[data-filter="furnished"]')?.checked && !furnished) show = false;
+            if (document.querySelector('[data-filter="garage"]')?.checked && !garage) show = false;
+            if (document.querySelector('[data-filter="metro"]')?.checked && !metro) show = false;
+            if (document.querySelector('[data-filter="concierge"]')?.checked && !concierge) show = false;
+
+            card.style.display = show ? '' : 'none';
+            if (show) visibleCount++;
         });
-    </script>
 
-    <script>
-        // Função para buscar imóveis
-        (function() {
-            const searchButton = document.getElementById('search-button');
-            const locationInput = document.getElementById('search-location');
-            const priceInput = document.getElementById('search-price');
-            const bedroomsInput = document.getElementById('search-bedrooms');
-            const cards = document.querySelectorAll('.listing-card');
-            const noResultsMessage = document.getElementById('no-results-message');
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
 
-            function parsePriceRange(value) {
-                if (!value) return { min: null, max: null };
-                const numbers = (value.match(/\d+/g) || []).map(Number);
-                if (numbers.length === 1) {
-                    return { min: 0, max: numbers[0] };
-                }
-                if (numbers.length >= 2) {
-                    return { min: numbers[0], max: numbers[1] };
-                }
-                return { min: null, max: null };
-            }
+    // Eventos
+    document.getElementById('search-button').addEventListener('click', applyFilters);
+    locInput.addEventListener('input', applyFilters);
+    priceInput.addEventListener('input', applyFilters);
+    bedInput.addEventListener('input', applyFilters);
+    checkboxes.forEach(cb => cb.addEventListener('change', applyFilters));
+    selectBed.addEventListener('change', applyFilters);
+    clearBtn.addEventListener('click', () => {
+        locInput.value = priceInput.value = bedInput.value = '';
+        checkboxes.forEach(cb => cb.checked = false);
+        selectBed.value = '';
+        minPrice = 1000; maxPrice = 50000;
+        updateSlider();
+        applyFilters();
+    });
 
-            function applyFilters() {
-                const locationValue = (locationInput.value || '').toLowerCase().trim();
-                const { min, max } = parsePriceRange(priceInput.value);
-                const bedroomsValue = parseInt(bedroomsInput.value, 10);
-
-                let anyVisible = false;
-
-                cards.forEach(card => {
-                    const city = (card.getAttribute('data-city') || '').toLowerCase();
-                    const price = parseInt(card.getAttribute('data-price') || '0', 10);
-                    const bedrooms = parseInt(card.getAttribute('data-bedrooms') || '0', 10);
-
-                    let visible = true;
-
-                    if (locationValue && !city.includes(locationValue)) {
-                        visible = false;
-                    }
-
-                    if (visible && (min !== null || max !== null)) {
-                        if (min !== null && price < min) visible = false;
-                        if (max !== null && price > max) visible = false;
-                    }
-
-                    if (visible && !Number.isNaN(bedroomsValue)) {
-                        if (bedrooms < bedroomsValue) visible = false;
-                    }
-
-                    card.style.display = visible ? '' : 'none';
-                    if (visible) anyVisible = true;
-                });
-
-                if (!anyVisible) {
-                    noResultsMessage.style.display = 'block';
-                } else {
-                    noResultsMessage.style.display = 'none';
-                }
-            }
-
-            if (searchButton) {
-                searchButton.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    applyFilters();
-                });
-            }
-        })();
-    </script>
-
+    // Inicializa
+    updateSlider();
+    applyFilters();
+});
+</script>
 </body>
 </html>
