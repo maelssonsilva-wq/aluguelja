@@ -1,46 +1,47 @@
-const { Pool } = require('pg');
-require('dotenv').config();
+from pydantic_settings import BaseSettings
+from typing import List
+import os
 
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-});
-
-// Função para testar a conexão
-const testConnection = async () => {
-  try {
-    const client = await pool.connect();
-    console.log('Conexão com o banco de dados estabelecida com sucesso!');
+class Settings(BaseSettings):
+    # App
+    APP_NAME: str = "Imóveis Prime API"
+    DEBUG: bool = True
+    HOST: str = "0.0.0.0"
+    PORT: int = 8000
     
-    // Criar tabela de usuários se não existir
-    await client.query(`
-      CREATE TABLE IF NOT EXISTS usuarios (
-        id SERIAL PRIMARY KEY,
-        nome VARCHAR(100) NOT NULL,
-        email VARCHAR(100) UNIQUE NOT NULL,
-        senha_hash VARCHAR(255) NOT NULL,
-        salt VARCHAR(100) NOT NULL,
-        token_verificacao VARCHAR(100),
-        email_verificado BOOLEAN DEFAULT false,
-        created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-      );
-    `);
-    console.log('Tabela de usuários verificada/criada com sucesso!');
+    # Database
+    DATABASE_URL: str = "postgresql://user:password@localhost:5432/auth_system"
     
-    client.release();
-  } catch (error) {
-    console.error('Erro ao conectar ao banco de dados:', error);
-    process.exit(1);
-  }
-};
+    # JWT
+    SECRET_KEY: str = "your-secret-key-here-change-in-production"
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 10080  # 7 dias
+    
+    # Google OAuth
+    GOOGLE_CLIENT_ID: str = ""
+    GOOGLE_CLIENT_SECRET: str = ""
+    GOOGLE_REDIRECT_URI: str = "http://localhost:8000/api/auth/google/callback"
+    
+    # Apple OAuth
+    APPLE_CLIENT_ID: str = ""
+    APPLE_TEAM_ID: str = ""
+    APPLE_KEY_ID: str = ""
+    
+    # Email
+    SMTP_HOST: str = "smtp.gmail.com"
+    SMTP_PORT: int = 587
+    SMTP_USER: str = ""
+    SMTP_PASSWORD: str = ""
+    SMTP_FROM: str = ""
+    
+    # Frontend
+    FRONTEND_URL: str = "http://localhost:3000"
+    
+    # CORS
+    CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
+    
+    class Config:
+        env_file = ".env"
+        case_sensitive = True
 
-// Testar a conexão ao iniciar
-testConnection();
-
-module.exports = {
-  query: (text, params) => pool.query(text, params),
-};
+settings = Settings()
