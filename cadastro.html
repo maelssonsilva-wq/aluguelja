@@ -6,419 +6,411 @@
     <title>Cadastro - Imóveis Prime</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #F3F4F6;
-            color: #111827;
-            -webkit-font-smoothing: antialiased;
+        @font-face {
+            font-family: 'AlibabaSans';
+            src: url('https://assets-persist.lovart.ai/agent-static-assets/AlibabaSans-Regular.otf') format('opentype');
+            font-weight: 400;
         }
 
-        .page-wrapper {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'AlibabaSans', sans-serif;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 24px;
+            padding: 20px;
         }
 
-        .card {
-            width: 100%;
-            max-width: 420px;
-            background: #FFFFFF;
+        .register-container {
+            background: white;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
-            padding: 32px 28px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            max-width: 450px;
+            width: 100%;
+            padding: 40px;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 24px;
+            text-align: center;
+            margin-bottom: 32px;
         }
 
         .logo i {
+            font-size: 48px;
             color: #10B981;
-            font-size: 24px;
         }
 
-        .logo span {
-            font-weight: 700;
-            font-size: 20px;
+        .logo h1 {
+            font-size: 28px;
             color: #111827;
+            margin-top: 8px;
         }
 
-        h1 {
-            font-size: 22px;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            font-size: 14px;
+        .logo p {
             color: #6B7280;
-            margin-bottom: 24px;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        label {
-            display: block;
             font-size: 14px;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 6px;
-        }
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        .input-wrapper i {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #9CA3AF;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px 12px 10px 38px;
-            border-radius: 8px;
-            border: 1px solid #D1D5DB;
-            font-size: 14px;
-            color: #111827;
-            outline: none;
-            box-sizing: border-box;
-        }
-
-        input:focus {
-            border-color: #10B981;
-            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
-        }
-
-        .helper {
-            font-size: 12px;
-            color: #6B7280;
             margin-top: 4px;
         }
 
-        .primary-btn {
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+            font-size: 14px;
+        }
+
+        .form-group input {
             width: 100%;
-            margin-top: 12px;
-            padding: 10px 16px;
-            border-radius: 999px;
-            border: none;
+            padding: 12px 16px;
+            border: 1px solid #D1D5DB;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #10B981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 14px;
             background: #10B981;
             color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
             font-weight: 600;
-            font-size: 15px;
             cursor: pointer;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            transition: all 0.3s;
+            margin-top: 8px;
         }
 
-        .primary-btn:hover {
+        .register-btn:hover {
             background: #059669;
-            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
 
-        .primary-btn:focus-visible {
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.4);
+        .register-btn:disabled {
+            background: #9CA3AF;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        .footer-link {
-            margin-top: 16px;
-            font-size: 14px;
-            text-align: center;
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 24px 0;
             color: #6B7280;
+            font-size: 14px;
         }
 
-        .footer-link a {
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .divider::before {
+            margin-right: 16px;
+        }
+
+        .divider::after {
+            margin-left: 16px;
+        }
+
+        .social-btn {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E5E7EB;
+            background: white;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: #374151;
+        }
+
+        .social-btn:hover {
+            border-color: #10B981;
+            color: #10B981;
+        }
+
+        .social-btn i {
+            font-size: 20px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 24px;
+            color: #6B7280;
+            font-size: 14px;
+        }
+
+        .login-link a {
             color: #10B981;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        .footer-link a:hover {
+        .login-link a:hover {
             text-decoration: underline;
         }
 
-        .disclaimer {
-            margin-top: 12px;
-            font-size: 11px;
-            color: #9CA3AF;
-            line-height: 1.4;
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .alert-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert i {
+            font-size: 20px;
+        }
+
+        .alert-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+            padding: 0;
+            margin-left: 10px;
+        }
+
+        .alert-error {
+            background-color: #FEE2E2;
+            color: #B91C1C;
+            border-left: 4px solid #DC2626;
+        }
+
+        .alert-success {
+            background-color: #D1FAE5;
+            color: #065F46;
+            border-left: 4px solid #059669;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .spin {
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <div class="page-wrapper">
-        <div class="card">
-            <div class="logo">
-                <i class="ri-home-smile-fill"></i>
-                <span>Imóveis Prime</span>
+    <div class="register-container">
+        <div class="logo">
+            <i class="ri-home-smile-2-fill"></i>
+            <h1>Criar Conta</h1>
+            <p>Cadastre-se para começar</p>
+        </div>
+
+        <div id="alert-container"></div>
+
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="name">Nome Completo</label>
+                <input type="text" id="name" name="name" required placeholder="Seu nome completo">
             </div>
 
-            <h1>Criar conta</h1>
-            <p class="subtitle">Cadastre-se para salvar favoritos, receber alertas e gerenciar seus imóveis.</p>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required placeholder="seu@email.com">
+            </div>
 
-            <!-- IMPORTANTE: este formulário ainda não salva em nenhum servidor.
-                 Depois será necessário conectar a uma API/backend para gravar os dados. -->
-            <form id="registrationForm" onsubmit="handleSubmit(event)">
-                <div class="form-group">
-                    <label for="name">Nome completo</label>
-                    <div class="input-wrapper">
-                        <i class="ri-user-line"></i>
-                        <input type="text" id="name" name="name" placeholder="Seu nome" required>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required placeholder="Mínimo 6 caracteres">
+            </div>
 
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <div class="input-wrapper">
-                        <i class="ri-mail-line"></i>
-                        <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirmar Senha</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Digite a senha novamente">
+            </div>
 
-                <div class="form-group">
-                    <label for="password">Senha</label>
-                    <div class="input-wrapper">
-                        <i class="ri-lock-2-line"></i>
-                        <input type="password" id="password" name="password" placeholder="Mínimo 6 caracteres" required>
-                    </div>
-                    <p class="helper">Use uma senha forte que você ainda não usou em outros sites.</p>
-                </div>
+            <button type="submit" class="register-btn">Criar Conta</button>
+        </form>
 
-                <div class="form-group">
-                    <label for="confirm-password">Confirmar senha</label>
-                    <div class="input-wrapper">
-                        <i class="ri-lock-password-line"></i>
-                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Repita a senha" required>
-                    </div>
-                </div>
+        <div class="divider">ou</div>
 
-                <button type="submit" class="primary-btn">
-                    Criar conta
-                    <i class="ri-arrow-right-line"></i>
-                </button>
+        <button class="social-btn" id="google-register-btn">
+            <i class="ri-google-fill"></i> Continuar com Google
+        </button>
 
-                <p class="disclaimer">Ao continuar, você concorda com os Termos de Uso e a Política de Privacidade da Imóveis Prime.</p>
-                            </form>
+        <button class="social-btn" id="apple-register-btn">
+            <i class="ri-apple-fill"></i> Continuar com Apple
+        </button>
 
-                <div id="error-message" class="error-message" style="display: none; color: #EF4444; margin-top: 16px; font-size: 14px;"></div>
-                <div id="success-message" class="success-message" style="display: none; color: #10B981; margin-top: 16px; font-size: 14px;"></div>
-
-            <p class="footer-link">
-                Já tem uma conta? <a href="index.html">Entrar</a>
-            </p>
+        <div class="login-link">
+            Já tem uma conta? <a href="index.html">Fazer login</a>
         </div>
     </div>
+
     <script>
-        // Verificar se o usuário veio do botão de proprietário
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const tipoUsuario = urlParams.get('tipo');
-            
-            if (tipoUsuario === 'proprietario') {
-                // Atualizar o título e subtítulo para proprietário
-                const titulo = document.querySelector('h1');
-                const subtitulo = document.querySelector('.subtitle');
-                
-                if (titulo) titulo.textContent = 'Cadastro de Proprietário';
-                if (subtitulo) {
-                    subtitulo.textContent = 'Cadastre-se como proprietário para publicar seus imóveis, gerenciar visitas e receber propostas.';
+        // Configuração da API
+        const API_BASE_URL = 'http://localhost:5000'; // Altere conforme necessário
+
+        function showAlert(message, type = 'info') {
+            const container = document.getElementById('alert-container');
+            container.innerHTML = '';
+
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerHTML = `
+                <div class="alert-content">
+                    <i class="ri-${type === 'error' ? 'error-warning-line' : 'checkbox-circle-line'}"></i>
+                    <span>${message}</span>
+                </div>
+                <button class="alert-close"><i class="ri-close-line"></i></button>
+            `;
+
+            container.appendChild(alert);
+
+            const closeBtn = alert.querySelector('.alert-close');
+            closeBtn.addEventListener('click', () => alert.remove());
+
+            setTimeout(() => {
+                if (alert.parentNode) {
+                    alert.remove();
                 }
-                
-                // Adicionar campo adicional para o CRECI (opcional)
-                const form = document.getElementById('registrationForm');
-                if (form) {
-                    const creciField = `
-                        <div class="form-group">
-                            <label for="creci">CRECI (opcional)</label>
-                            <div class="input-wrapper">
-                                <i class="ri-id-card-line"></i>
-                                <input type="text" id="creci" name="creci" placeholder="Seu número de registro">
-                            </div>
-                        </div>
-                    `;
-                    const submitButton = form.querySelector('button[type="submit"]');
-                    if (submitButton) {
-                        submitButton.insertAdjacentHTML('beforebegin', creciField);
-                    }
+            }, 5000);
+        }
+
+        // Formulário de cadastro
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validações
+            if (!name || !email || !password || !confirmPassword) {
+                showAlert('Por favor, preencha todos os campos.', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showAlert('A senha deve ter no mínimo 6 caracteres.', 'error');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showAlert('As senhas não coincidem.', 'error');
+                return;
+            }
+
+            // Loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="ri-loader-4-line spin"></i> Criando conta...';
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || data.detail || 'Erro ao criar conta');
                 }
+
+                // Salva token
+                if (data.token) {
+                    localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                }
+
+                showAlert(data.message || 'Conta criada com sucesso!', 'success');
+
+                // Redireciona após 2 segundos
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+
+            } catch (error) {
+                showAlert(error.message, 'error');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
             }
         });
 
-        function showError(message) {
-            const errorElement = document.getElementById('error-message');
-            const successElement = document.getElementById('success-message');
-            
-            errorElement.textContent = message;
-            errorElement.style.display = 'block';
-            successElement.style.display = 'none';
-            
-            // Rolar até a mensagem de erro
-            errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+        // Login com Google
+        document.getElementById('google-register-btn').addEventListener('click', function() {
+            const width = 500;
+            const height = 600;
+            const left = (screen.width / 2) - (width / 2);
+            const top = (screen.height / 2) - (height / 2);
 
-        function showSuccess(message) {
-            const errorElement = document.getElementById('error-message');
-            const successElement = document.getElementById('success-message');
-            
-            successElement.textContent = message;
-            successElement.style.display = 'block';
-            errorElement.style.display = 'none';
-            
-            // Rolar até a mensagem de sucesso
-            successElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+            window.open(
+                `${API_BASE_URL}/api/auth/google`,
+                'Google Login',
+                `width=${width},height=${height},left=${left},top=${top}`
+            );
+        });
 
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(String(email).toLowerCase());
-        }
-
-        async function handleSubmit(event) {
-            event.preventDefault();
-            
-            const form = event.target;
-            const name = form.name.value.trim();
-            const email = form.email.value.trim();
-            const password = form.password.value;
-            const confirmPassword = form['confirm-password'].value;
-            const creci = form.creci ? form.creci.value.trim() : '';
-            
-            // Validações
-            if (name.length < 3) {
-                showError('O nome deve ter pelo menos 3 caracteres');
-                return;
-            }
-            
-            if (!validateEmail(email)) {
-                showError('Por favor, insira um e-mail válido');
-                return;
-            }
-            
-            if (password.length < 6) {
-                showError('A senha deve ter pelo menos 6 caracteres');
-                return;
-            }
-            
-            if (password !== confirmPassword) {
-                showError('As senhas não conferem');
-                return;
-            }
-            
-            // Desabilitar o botão de envio para evitar múltiplos envios
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.innerHTML;
-            submitButton.disabled = true;
-            submitButton.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Cadastrando...';
-            
-            // Simular um atraso de rede
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Verificar se o usuário já existe
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            const userExists = users.some(user => user.email === email);
-            
-            if (userExists) {
-                showError('Este e-mail já está cadastrado. Por favor, faça login ou use outro e-mail.');
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
-                return;
-            }
-            
-            // Criar novo usuário
-            const isOwner = new URLSearchParams(window.location.search).get('tipo') === 'proprietario';
-            const newUser = {
-                id: Date.now().toString(),
-                name,
-                email,
-                password: btoa(password), // Criptografia básica (não use em produção real)
-                userType: isOwner ? 'owner' : 'user',
-                creci: isOwner ? creci : null,
-                createdAt: new Date().toISOString()
-            };
-            
-            // Salvar usuário no localStorage
-            users.push(newUser);
-            localStorage.setItem('users', JSON.stringify(users));
-            
-            // Criar sessão de usuário logado
-            const session = {
-                userId: newUser.id,
-                email: newUser.email,
-                name: newUser.name,
-                userType: newUser.userType,
-                loggedIn: true,
-                lastLogin: new Date().toISOString()
-            };
-            localStorage.setItem('currentUser', JSON.stringify(session));
-            
-            // Mostrar mensagem de sucesso
-            showSuccess(`Cadastro realizado com sucesso! Bem-vindo(a) ${name}.`);
-            
-            // Limpar o formulário
-            form.reset();
-            
-            // Redirecionar após 2 segundos
+        // Verifica token na URL (callback OAuth)
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        
+        if (token) {
+            localStorage.setItem('authToken', token);
+            showAlert('Login realizado com sucesso!', 'success');
             setTimeout(() => {
                 window.location.href = 'index.html';
-            }, 2000);
-            
-            // Se você quiser implementar uma conexão real com o servidor no futuro,
-            // descomente o código abaixo e substitua a URL pela sua API
-            /*
-            try {
-                const response = await fetch('https://sua-api.com/cadastro', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name,
-                        email,
-                        password,
-                        creci,
-                        userType: isOwner ? 'owner' : 'user'
-                    }),
-                });
-                
-                const data = await response.json();
-                
-                if (!response.ok) {
-                    // Se houver erros de validação do servidor
-                    if (data.errors && Array.isArray(data.errors)) {
-                        showError(data.errors[0].msg || 'Erro ao processar o cadastro');
-                    } else {
-                        showError(data.error || 'Erro ao processar o cadastro');
-                    }
-                    return;
-                }
-                
-                // Sucesso no cadastro
-            } catch (error) {
-                console.error('Erro ao enviar o formulário:', error);
-                showError('Erro de conexão com o servidor. Por favor, tente novamente mais tarde.');
-                
-                // Reativar o botão de envio em caso de erro
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
-            }
-            */
+            }, 1500);
         }
     </script>
 </body>
