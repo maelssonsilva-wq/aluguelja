@@ -1,62 +1,58 @@
-const bcrypt = require('bcryptjs');
-const { v4: uuidv4 } = require('uuid');
-const db = require('../config/db');
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy.sql import func
+from app.database import Base
+from passlib.context import CryptContext
+from datetime import datetime
 
-class User {
-  static async create({ nome, email, senha }) {
-    const salt = await bcrypt.genSalt(10);
-    const senha_hash = await bcrypt.hash(senha, salt);
-    const token_verificacao = uuidv4();
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-    const query = `
-      INSERT INTO usuarios 
-      (nome, email, senha_hash, salt, token_verificacao)
-      VALUES ($1, $2, $3, $4, $5)
-      RETURNING id, email, nome, email_verificado;
-    `;
+class User(Base):
+    __tablename__ = "users"
 
-    const values = [nome, email, senha_hash, salt, token_verificacao];
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
+    email = Column(String, unique=True, index=True, nullable=False)
+    password = Column(String, nullable=True)  # Nullable para login social
     
-    try {
-      const result = await db.query(query, values);
-      return result.rows[0];
-    } catch (error) {
-      if (error.code === '23505') {
-        throw new Error('Email já está em uso');
-      }
-      throw error;
-    }
-  }
+    # OAuth fields
+    google_id = Column(String, unique=True, nullable=True)
+    apple_id = Column(String, unique=True, nullable=True)
+    
+    # Profile
+    avatar = Column(String, nullable=True)
+    
+    # Email verification
+    is_email_verified = Column(Boolean, default=False)
+    email_verification_token = Column(String, nullable=True)
+    
+    # Password reset
+    reset_password_token = Column(String, nullable=True)
+    reset_password_expire = Column(DateTime, nullable=True)
+    
+    # Timestamps
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+    last_login = Column(DateTime(timezone=True), default=func.now())
 
-  static async findByEmail(email) {
-    const query = 'SELECT * FROM usuarios WHERE email = $1';
-    const result = await db.query(query, [email]);
-    return result.rows[0];
-  }
+    def verify_password(self, plain_password: str) -> bool:
+        """Verifica se a senha está correta"""
+        if not self.password:
+            return False
+        return pwd_context.verify(plain_password, self.password)
 
-  static async verifyPassword(user, senha) {
-    return await bcrypt.compare(senha, user.senha_hash);
-  }
+    @staticmethod
+    def hash_password(password: str) -> str:
+        """Gera hash da senha"""
+        return pwd_context.hash(password)
 
-  static async verifyEmailToken(token) {
-    const query = `
-      UPDATE usuarios 
-      SET email_verificado = true, 
-          token_verificacao = NULL,
-          updated_at = NOW()
-      WHERE token_verificacao = $1
-      RETURNING id, email, nome, email_verificado;
-    `;
-
-    const result = await db.query(query, [token]);
-    return result.rows[0];
-  }
-
-  static async findById(id) {
-    const query = 'SELECT * FROM usuarios WHERE id = $1';
-    const result = await db.query(query, [id]);
-    return result.rows[0];
-  }
-}
-
-module.exports = User;
+    def to_dict(self):
+        """Retorna dados públicos do usuário"""
+        return {
+            "id": self.id,
+            "name": self.name,
+            "email": self.email,
+            "avatar": self.avatar,
+            "is_email_verified": self.is_email_verified,
+            "created_at": self.created_at.isoformat() if self.created_at else None,
+            "last_login": self.last_login.isoformat() if self.last_login else None
+        }
