@@ -330,9 +330,43 @@
             // Simular um atraso de rede
             await new Promise(resolve => setTimeout(resolve, 1500));
             
-            // Simular um cadastro bem-sucedido
+            // Verificar se o usuário já existe
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const userExists = users.some(user => user.email === email);
+            
+            if (userExists) {
+                showError('Este e-mail já está cadastrado. Por favor, faça login ou use outro e-mail.');
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+                return;
+            }
+            
+            // Criar novo usuário
             const isOwner = new URLSearchParams(window.location.search).get('tipo') === 'proprietario';
-            const userType = isOwner ? 'proprietário' : 'usuário';
+            const newUser = {
+                id: Date.now().toString(),
+                name,
+                email,
+                password: btoa(password), // Criptografia básica (não use em produção real)
+                userType: isOwner ? 'owner' : 'user',
+                creci: isOwner ? creci : null,
+                createdAt: new Date().toISOString()
+            };
+            
+            // Salvar usuário no localStorage
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Criar sessão de usuário logado
+            const session = {
+                userId: newUser.id,
+                email: newUser.email,
+                name: newUser.name,
+                userType: newUser.userType,
+                loggedIn: true,
+                lastLogin: new Date().toISOString()
+            };
+            localStorage.setItem('currentUser', JSON.stringify(session));
             
             // Mostrar mensagem de sucesso
             showSuccess(`Cadastro realizado com sucesso! Bem-vindo(a) ${name}.`);
@@ -340,10 +374,10 @@
             // Limpar o formulário
             form.reset();
             
-            // Redirecionar após 3 segundos
+            // Redirecionar após 2 segundos
             setTimeout(() => {
                 window.location.href = 'index.html';
-            }, 3000);
+            }, 2000);
             
             // Se você quiser implementar uma conexão real com o servidor no futuro,
             // descomente o código abaixo e substitua a URL pela sua API
