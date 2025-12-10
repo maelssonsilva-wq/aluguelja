@@ -1243,230 +1243,362 @@
         </footer>
     </div>
 
-  <!-- Adicione este modal de login no seu HTML, antes do fechamento do body -->
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Entrar na sua conta</h2>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="loginEmail">E-mail</label>
-                <div class="input-wrapper">
-                    <i class="ri-mail-line"></i>
-                    <input type="email" id="loginEmail" name="email" required placeholder="seu@email.com">
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 style="margin-bottom: 24px; color: #111827;">Entrar na sua conta</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="seu@email.com">
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="loginPassword">Senha</label>
-                <div class="input-wrapper">
-                    <i class="ri-lock-2-line"></i>
-                    <input type="password" id="loginPassword" name="password" required placeholder="Sua senha">
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required placeholder="Sua senha">
                 </div>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-            <div class="form-footer">
+                <button type="submit" class="login-btn">Entrar</button>
                 <a href="#" class="forgot-password">Esqueceu sua senha?</a>
-                <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
-            </div>
-        </form>
+                <div class="divider">ou</div>
+                <div style="text-align: center; margin-top: 16px;">
+                    <p style="color: #6B7280; margin-bottom: 16px;">Ainda não tem uma conta?</p>
+                    <a href="cadastro.html" class="auth-btn" style="display: inline-flex; justify-content: center; align-items: center; gap: 8px; text-decoration: none;">
+                        <i class="ri-user-add-line"></i> Criar conta
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<!-- Adicione este script antes do fechamento do body -->
+    !-- Login Modal Script -->
 <script>
-    // Função para mostrar mensagens de erro/sucesso
-    function showAlert(message, type = 'error') {
-        const alertDiv = document.createElement('div');
-        alertDiv.className = `alert alert-${type}`;
-        alertDiv.textContent = message;
-        
-        // Inserir antes do formulário
-        const form = document.getElementById('loginForm');
-        form.parentNode.insertBefore(alertDiv, form);
-        
-        // Remover após 5 segundos
-        setTimeout(() => {
-            alertDiv.remove();
-        }, 5000);
+document.addEventListener('DOMContentLoaded', function() {
+    // Get modal elements
+    const loginBtn = document.getElementById('login-btn');
+    const loginModal = document.getElementById('loginModal');
+    const closeBtn = document.querySelector('.close-btn');
+    const loginForm = document.getElementById('loginForm');
+    const forgotPasswordLink = document.querySelector('.forgot-password');
+    
+    // Show modal when login button is clicked
+    if (loginBtn) {
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        });
     }
-
-    // Função para fazer login
-    async function handleLogin(event) {
-        event.preventDefault();
-        
-        const email = document.getElementById('loginEmail').value.trim();
-        const password = document.getElementById('loginPassword').value;
-        
-        // Validação básica
-        if (!email || !password) {
-            showAlert('Por favor, preencha todos os campos');
-            return;
-        }
-        
-        // Obter usuários do localStorage
-        const users = JSON.parse(localStorage.getItem('users') || '[]');
-        
-        // Procurar usuário pelo email
-        const user = users.find(u => u.email === email);
-        
-        if (!user) {
-            showAlert('E-mail ou senha incorretos');
-            return;
-        }
-        
-        // Verificar senha (lembrando que a senha foi salva com btoa no cadastro)
-        if (btoa(password) !== user.password) {
-            showAlert('E-mail ou senha incorretos');
-            return;
-        }
-        
-        // Criar sessão de usuário logado
-        const session = {
-            userId: user.id,
-            email: user.email,
-            name: user.name,
-            userType: user.userType,
-            loggedIn: true,
-            lastLogin: new Date().toISOString()
-        };
-        
-        localStorage.setItem('currentUser', JSON.stringify(session));
-        
-        // Mostrar mensagem de sucesso
-        showAlert('Login realizado com sucesso!', 'success');
-        
-        // Redirecionar após 1 segundo
-        setTimeout(() => {
-            window.location.href = 'index.html';
-        }, 1000);
+    
+    // Close modal when X is clicked
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        });
     }
-
-    // Adicionar evento de submit ao formulário de login
-    document.addEventListener('DOMContentLoaded', () => {
-        const loginForm = document.getElementById('loginForm');
-        if (loginForm) {
-            loginForm.addEventListener('submit', handleLogin);
+    
+    // Close modal when clicking outside the modal content
+    window.addEventListener('click', function(e) {
+        if (e.target === loginModal) {
+            loginModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    // Handle form submission
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            
+            // Basic validation
+            if (!email || !password) {
+                showAlert('Por favor, preencha todos os campos.', 'error');
+                return;
+            }
+            
+            // Email validation
+            if (!isValidEmail(email)) {
+                showAlert('Por favor, insira um e-mail válido.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = loginForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="ri-loader-4-line spin"></i> Entrando...';
+            
+            // Simulate API call (replace with actual API call)
+            setTimeout(() => {
+                // This is a simulation - replace with actual authentication logic
+                if (email === 'usuario@exemplo.com' && password === 'senha123') {
+                    // Successful login
+                    showAlert('Login realizado com sucesso!', 'success');
+                    
+                    // Update UI for logged-in user
+                    updateUIForLoggedInUser(email);
+                    
+                    // Close modal after short delay
+                    setTimeout(() => {
+                        loginModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                        loginForm.reset();
+                    }, 1000);
+                } else {
+                    // Failed login
+                    showAlert('E-mail ou senha incorretos. Tente novamente.', 'error');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            }, 1500);
+        });
+    }
+    
+    // Forgot password functionality
+    if (forgotPasswordLink) {
+        forgotPasswordLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = prompt('Digite seu e-mail para redefinir a senha:');
+            if (email) {
+                if (isValidEmail(email)) {
+                    // Simulate sending reset password email
+                    showAlert(`Um link de redefinição de senha foi enviado para ${email}`, 'info');
+                } else {
+                    showAlert('Por favor, insira um e-mail válido.', 'error');
+                }
+            }
+        });
+    }
+    
+    // Helper function to validate email
+    function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
+    
+    // Helper function to show alerts
+    function showAlert(message, type = 'info') {
+        // Remove any existing alerts
+        const existingAlert = document.querySelector('.alert');
+        if (existingAlert) {
+            existingAlert.remove();
         }
         
-        // Fechar modal ao clicar no botão de fechar
-        const closeBtn = document.querySelector('.close-btn');
+        // Create alert element
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type}`;
+        alert.innerHTML = `
+            <div class="alert-content">
+                <i class="ri-${type === 'error' ? 'error-warning-line' : type === 'success' ? 'checkbox-circle-line' : 'information-line'}"></i>
+                <span>${message}</span>
+            </div>
+            <button class="alert-close"><i class="ri-close-line"></i></button>
+        `;
+        
+        // Add alert to modal
+        const modalContent = document.querySelector('.modal-content');
+        modalContent.insertBefore(alert, modalContent.firstChild);
+        
+        // Add close button functionality
+        const closeBtn = alert.querySelector('.alert-close');
         if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                document.getElementById('loginModal').style.display = 'none';
+            closeBtn.addEventListener('click', function() {
+                alert.remove();
             });
         }
         
-        // Fechar modal ao clicar fora dele
-        window.addEventListener('click', (event) => {
-            const modal = document.getElementById('loginModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
+        // Auto-remove alert after 5 seconds
+        setTimeout(() => {
+            if (alert.parentNode) {
+                alert.remove();
             }
-        });
-    });
-</script>
-
-<style>
-    /* Estilos para o modal e alertas */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+        }, 5000);
     }
     
-    .modal-content {
-        background-color: #fff;
-        margin: 10% auto;
-        padding: 24px;
-        border-radius: 8px;
-        max-width: 400px;
-        position: relative;
+    // Update UI after successful login
+    function updateUIForLoggedInUser(email) {
+        const authSection = document.querySelector('.auth-section');
+        if (authSection) {
+            authSection.innerHTML = `
+                <div class="user-menu">
+                    <div class="user-avatar">${email.charAt(0).toUpperCase()}</div>
+                    <div class="user-email">${email}</div>
+                    <div class="dropdown-menu">
+                        <a href="perfil.html"><i class="ri-user-line"></i> Meu Perfil</a>
+                        <a href="favoritos.html"><i class="ri-heart-line"></i> Favoritos</a>
+                        <a href="#" id="logout-btn"><i class="ri-logout-box-line"></i> Sair</a>
+                    </div>
+                </div>
+            `;
+            
+            // Add logout functionality
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Clear any stored user data
+                    localStorage.removeItem('userEmail');
+                    // Reload the page to reset the UI
+                    window.location.reload();
+                });
+            }
+        }
     }
     
-    .close-btn {
-        position: absolute;
-        right: 20px;
-        top: 15px;
-        font-size: 24px;
-        cursor: pointer;
-        color: #6B7280;
+    // Check if user is already logged in (in a real app, you'd check a token)
+    const userEmail = localStorage.getItem('userEmail');
+    if (userEmail) {
+        updateUIForLoggedInUser(userEmail);
     }
     
-    .form-group {
-        margin-bottom: 16px;
-    }
-    
-    .input-wrapper {
-        position: relative;
-    }
-    
-    .input-wrapper i {
-        position: absolute;
-        left: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #6B7280;
-    }
-    
-    .input-wrapper input {
-        width: 100%;
-        padding: 10px 12px 10px 38px;
-        border: 1px solid #D1D5DB;
-        border-radius: 8px;
-        font-size: 14px;
-    }
-    
-    .btn {
-        display: inline-block;
-        padding: 10px 16px;
-        border-radius: 8px;
-        font-weight: 500;
-        cursor: pointer;
-        text-align: center;
-        border: none;
-    }
-    
-    .btn-primary {
-        background-color: #10B981;
-        color: white;
-        width: 100%;
-    }
-    
-    .form-footer {
-        margin-top: 16px;
-        text-align: center;
-        font-size: 14px;
-    }
-    
-    .form-footer a {
-        color: #10B981;
-        text-decoration: none;
-    }
-    
-    .alert {
-        padding: 12px;
-        border-radius: 8px;
-        margin-bottom: 16px;
-        font-size: 14px;
-    }
-    
-    .alert-error {
-        background-color: #FEE2E2;
-        color: #B91C1C;
-        border: 1px solid #FCA5A5;
-    }
-    
-    .alert-success {
-        background-color: #D1FAE5;
-        color: #065F46;
-        border: 1px solid #6EE7B7;
-    }
-</style>
+    // Add styles for alerts and loading spinner
+    const style = document.createElement('style');
+    style.textContent = `
+        /* Alert styles */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        .alert-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .alert i {
+            font-size: 20px;
+        }
+        
+        .alert-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+            padding: 0;
+            margin-left: 10px;
+        }
+        
+        .alert-error {
+            background-color: #FEE2E2;
+            color: #B91C1C;
+            border-left: 4px solid #DC2626;
+        }
+        
+        .alert-success {
+            background-color: #D1FAE5;
+            color: #065F46;
+            border-left: 4px solid #059669;
+        }
+        
+        .alert-info {
+            background-color: #E0F2FE;
+            color: #075985;
+            border-left: 4px solid #0284C7;
+        }
+        
+        /* Loading spinner */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .spin {
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+        
+        /* User menu */
+        .user-menu {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #10B981;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .user-avatar:hover {
+            transform: scale(1.05);
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            padding: 8px 0;
+            margin-top: 8px;
+        }
+        
+        .user-menu:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-menu a {
+            color: #4B5563;
+            padding: 10px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: #F3F4F6;
+            color: #10B981;
+        }
+        
+        .dropdown-menu i {
+            font-size: 18px;
+        }
+        
+        .user-email {
+            display: none;
+            font-size: 14px;
+            color: #6B7280;
+            margin-top: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+});
+    </script>
 
     <script>
         // Função para buscar imóveis
