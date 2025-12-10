@@ -946,12 +946,12 @@
     <div class="container">
         <!-- Auth Top Bar -->
         <div class="top-bar">
-            <a class="auth-btn" href="https://accounts.google.com/v3/signin/identifier?authuser=0&continue=https%3A%2F%2Fwww.google.com%2F&ec=futura_exp_og_si_72776762_e&hl=pt-BR&flowName=GlifWebSignIn&flowEntry=AddSession&dsh=S-1038929829%3A1765282433263884" target="_blank" rel="noopener noreferrer">
+            <div class="auth-btn" id="google-login-btn">
                 <i class="ri-google-fill"></i> Continuar com Google
-            </a>
-            <a class="auth-btn" href="https://account.apple.com/sign-in" target="_blank" rel="noopener noreferrer">
+            </div>
+            <div class="auth-btn" id="apple-login-btn">
                 <i class="ri-apple-fill"></i> Continuar com Apple
-            </a>
+            </div>
             <div class="auth-btn" id="login-btn"><i class="ri-mail-fill"></i> Entrar com E-mail</div>
             <a class="auth-btn" href="cadastro.html">
                 <i class="ri-user-add-line"></i> Cadastre-se
@@ -1668,6 +1668,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })();
     </script>
+
+    <!-- Sistema de Autenticação Integrado -->
+    <script src="auth.js"></script>
 
 </body>
 </html>
